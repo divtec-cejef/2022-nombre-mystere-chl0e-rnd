@@ -19,25 +19,29 @@
         return Math.floor(Math.random() * (max - min) + min);
     }
 
-    // Déclaration variables
-    let nbMystere = tireNombre(1, 100);
+    // Déclaration variables et constantes
+    const MIN = 1;
+    const MAX = 100;
+    let nbMystere = tireNombre(MIN, MAX);
     let nbEssais = 0;
     let reponse = 0;
-    let message = 'Entrez un nombre entre 1 et 100';
+    let message = `Entrez un nombre entre ${MIN} et ${MAX}.`;
 
     do {
         // Saisi du nombre
         reponse = Number(prompt(message));
-        if (isNaN(reponse) || reponse < 1 || reponse > 100) {
+        if (isNaN(reponse) || reponse < MIN || reponse > MAX) {
             alert('Veuillez saisir un nombre correct !');
-        } else {
-            // Affichage de l'indice
-            nbEssais++;
-            message = reponse > nbMystere ? 'C\'est moins !' : 'C\'est plus !';
+            continue;
         }
+
+        // Affichage de l'indice
+        nbEssais++;
+        message = reponse > nbMystere ? 'C\'est moins !' : 'C\'est plus !';
+
     } while (reponse !== nbMystere);
 
     // le nombre mystère a été trouvé
-    alert('Vous avez trouvé après ' + nbEssais + ' essais !');
+    alert(`Vous avez trouvé après ${nbEssais} essais !`);
 
 }()); // main IIFE
