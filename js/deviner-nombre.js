@@ -1,9 +1,9 @@
 /**
-* Jeu du nombre mystère
-* @author  Chloé Renaud
-* @version 0.1
-* @since   2022-08-30 (date de création)
-*/
+ * Jeu du nombre mystère
+ * @author  Chloé Renaud
+ * @version 0.1
+ * @since   2022-08-30 (date de création)
+ */
 
 // Main IIFE (Immediately-Invoked Function Expression, se prononce "iffy")
 (function main() {
@@ -22,30 +22,22 @@
     // Déclaration variables
     let nbMystere = tireNombre(1, 100);
     let nbEssais = 0;
-    let reponse = '';
+    let reponse = 0;
+    let message = 'Entrez un nombre entre 1 et 100';
 
-     do {
-
+    do {
         // Saisi du nombre
-        while (true) {
-            reponse = Number(prompt('Entrez un nombre entre 1 et 100'));
-            if(isNaN(reponse) || reponse <  1 || reponse > 100) {
-                alert('Veuillez saisir un nombre correct !');
-            } else {
-                break;
-            }
-        }
-        nbEssais++;
-
-        // Affichage de l'indice
-        if (reponse > nbMystere) {
-            alert('C\'est moins !');
-        } else if (reponse < nbMystere) {
-            alert('C\'est plus !');
+        reponse = Number(prompt(message));
+        if (isNaN(reponse) || reponse < 1 || reponse > 100) {
+            alert('Veuillez saisir un nombre correct !');
+        } else {
+            // Affichage de l'indice
+            nbEssais++;
+            message = reponse > nbMystere ? 'C\'est moins !' : 'C\'est plus !';
         }
     } while (reponse !== nbMystere);
 
     // le nombre mystère a été trouvé
-    alert('Vous avez trouvé après ' + nbEssais + ' essais !' );
+    alert('Vous avez trouvé après ' + nbEssais + ' essais !');
 
 }()); // main IIFE
