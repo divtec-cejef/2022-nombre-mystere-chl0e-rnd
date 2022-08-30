@@ -24,7 +24,7 @@
     let nbEssais = 0;
     let reponse = '';
 
-    while(reponse !== nbMystere) {
+     do {
 
         // Saisi du nombre
         while (true) {
@@ -40,10 +40,11 @@
         // Affichage de l'indice
         if (reponse > nbMystere) {
             alert('C\'est moins !');
-        } else {
+        } else if (reponse < nbMystere) {
             alert('C\'est plus !');
         }
-    }
+    } while (reponse !== nbMystere);
+
     // le nombre mystère a été trouvé
     alert('Vous avez trouvé après ' + nbEssais + ' essais !' );
 
