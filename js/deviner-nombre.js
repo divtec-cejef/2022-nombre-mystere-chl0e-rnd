@@ -1,13 +1,13 @@
 /**
-* Jeu du nombre mystère
-* @author  Steve Fallet
-* @version 0.1
-* @since   2018-09-09 (date de création)
-*/
+ * Jeu du nombre mystère
+ * @author  Chloé Renaud
+ * @version 0.1
+ * @since   2022-08-30 (date de création)
+ */
 
 // Main IIFE (Immediately-Invoked Function Expression, se prononce "iffy")
 (function main() {
-    "use strict";
+    'use strict';
 
     /**
      * Retourne un nombre entier aléatoire compris entre min et max
@@ -18,5 +18,30 @@
     function tireNombre(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     }
+
+    // Déclaration variables et constantes
+    const MIN = 1;
+    const MAX = 100;
+    let nbMystere = tireNombre(MIN, MAX);
+    let nbEssais = 0;
+    let reponse = 0;
+    let message = `Entrez un nombre entre ${MIN} et ${MAX}.`;
+
+    do {
+        // Saisi du nombre
+        reponse = Number(prompt(message));
+        if (isNaN(reponse) || reponse < MIN || reponse > MAX) {
+            alert('Veuillez saisir un nombre correct !');
+            continue;
+        }
+
+        // Affichage de l'indice
+        nbEssais++;
+        message = reponse > nbMystere ? 'C\'est moins !' : 'C\'est plus !';
+
+    } while (reponse !== nbMystere);
+
+    // le nombre mystère a été trouvé
+    alert(`Vous avez trouvé après ${nbEssais} essais !`);
 
 }()); // main IIFE
